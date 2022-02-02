@@ -1,0 +1,61 @@
+.header {
+    background-color: $main-bg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $header-height;
+    z-index: 99;
+    .container {
+        height: 100%;
+    }
+    &__logo {
+        @include flex(center, center);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        img {
+            height: 28px;
+        }
+    }
+    &__menu {
+        @include flex(center, space-between);
+        font-size: 1.2rem;
+        height: 100%;
+        &__moblie-toggle {
+            display: none;
+        }
+        &__item~&__item {
+            margin-left: 40px;
+        }
+        &__item.active {
+            color: $main-color;
+            font-weight: 500;
+        }
+        &__item:hover {
+            color: $main-color;
+        }
+        &__left,
+        &__right {
+            @include flex(center, center);
+            height: 100%;
+        }
+        &__right {
+            font-size: 1.9rem;
+            &__item {
+                @include flex(center, center);
+            }
+            @include tablet {
+                margin-left: auto;
+            }
+            @include mobile {
+                font-size: 2rem;
+            }
+        }
+        &__left {
+            &__close {
+                display: none;
+            }
+        }
+    }
+}
