@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 HeroSlider.propTypes = {
 	data: PropTypes.array.isRequired,
@@ -23,8 +23,7 @@ function HeroSlider(props) {
 
 	const prevSlider = () => {
 		const index = activeSlider - 1 < 0 ? data.length - 1 : activeSlider - 1;
-		if (index) {
-		}
+
 		setActiveSlider(index);
 	};
 
@@ -88,7 +87,13 @@ const HeroSliderItem = (props) => {
 				</div>
 				<div className="hero-slider__item__info__btn">
 					<Link to={item.path}>
-						<button>Xem chi tiết</button>
+						<Button
+							backgroundColor={item.color}
+							animation={true}
+							icon="bx bx-cart"
+						>
+							Xem chi tiết
+						</Button>
 					</Link>
 				</div>
 			</div>

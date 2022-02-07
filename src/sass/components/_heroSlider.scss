@@ -90,15 +90,6 @@
             }
             &__btn {
                 overflow: hidden;
-                button {
-                    padding: 10px 20px;
-                    font-size: 1.5rem;
-                    @include tablet {
-                        padding: 10px 20px;
-                        font-size: 1.5rem;
-                    }
-                    cursor: pointer;
-                }
             }
             &__title>span,
             &__description>span,
