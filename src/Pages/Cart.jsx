@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-Cart.propTypes = {};
+// Cart.propTypes = {};
+import Helmet from "../Components/Helmet";
 
-function Cart(props) {
-	return <div>Cart</div>;
+function Cart() {
+	return <Helmet title="Cart">Cart</Helmet>;
 }
 
 export default Cart;

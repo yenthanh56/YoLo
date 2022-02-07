@@ -1,10 +1,113 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+// Footer.propTypes = {};
+import { Link } from "react-router-dom";
 
-Footer.propTypes = {};
+import Grid from "./Gird";
+import logo from "../assets/images/Logo-2.png";
 
-function Footer(props) {
-	return <div>Footer</div>;
+const footerAboutLinks = [
+	{
+		display: "Giới thiệu",
+		path: "/about",
+	},
+	{
+		display: "Liên hệ",
+		path: "/about",
+	},
+	{
+		display: "Tuyển dụng",
+		path: "/about",
+	},
+	{
+		display: "Tin tức",
+		path: "/about",
+	},
+	{
+		display: "Hệ thông cửa hàng",
+		path: "/about",
+	},
+];
+const footerCustomerLinks = [
+	{
+		display: "Chính sách đổi trả",
+		path: "/about",
+	},
+	{
+		display: "Chính sách bảo hành",
+		path: "/about",
+	},
+	{
+		display: "Chính sách hoàn tiền",
+		path: "/about",
+	},
+];
+
+function Footer() {
+	return (
+		<footer className="footer">
+			<div className="container">
+				<Grid col={4} mdCol={2} smCol={1} gap={10}>
+					<div>
+						<div className="footer__title">
+							<p>Tổng đài hỗ trợ</p>
+						</div>
+						<div className="footer__content">
+							<p>
+								Liên hệ đặt hàng <strong>0123456789</strong>
+							</p>
+							<p>
+								Thắc mắc đơn hàng <strong>0123456789</strong>
+							</p>
+							<p>
+								Góp ý, khiếu nại <strong>0123456789</strong>
+							</p>
+						</div>
+					</div>
+					<div>
+						<div className="footer__title">
+							<p>Về Yolo</p>
+						</div>
+						<div className="footer__content">
+							{footerAboutLinks.map((item, index) => (
+								<p key={index}>
+									<Link to={item.path}>{item.display}</Link>
+								</p>
+							))}
+						</div>
+					</div>
+					<div>
+						<div className="footer__title">
+							<p>Chăm sóc khách hàng</p>
+						</div>
+						<div className="footer__content">
+							{footerCustomerLinks.map((item, index) => (
+								<p key={index}>
+									<Link to={item.path}>{item.display}</Link>
+								</p>
+							))}
+						</div>
+					</div>
+					<div>
+						<div className="footer__about">
+							<Link to="/">
+								<img
+									src={logo}
+									className="footer__logo"
+									alt=""
+								/>
+							</Link>
+						</div>
+						<div className="footer__description">
+							<p>
+								Chúng tôi luôn luôn sẵn sàng phục vụ quý khách
+							</p>
+						</div>
+					</div>
+				</Grid>
+			</div>
+		</footer>
+	);
 }
 
 export default Footer;

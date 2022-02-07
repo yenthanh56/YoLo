@@ -25,6 +25,10 @@ a {
     color: unset;
 }
 
+a:hover {
+    color: $main-color;
+}
+
 @each $color,
 $val in $colors {
     .color-#{$color} {
@@ -36,14 +40,20 @@ $val in $colors {
 }
 
 @each $val in $numbers {
-    .grid-col#{$val} {
+    .grid-col-#{$val} {
         grid-template-columns: repeat($val, 1fr);
     }
+}
+
+@each $val in $numbers {
     .grid-col-md-#{$val} {
         @include tablet {
             grid-template-columns: repeat($val, 1fr);
         }
     }
+}
+
+@each $val in $numbers {
     .grid-col-sm-#{$val} {
         @include mobile {
             grid-template-columns: repeat($val, 1fr);
@@ -55,7 +65,6 @@ $val in $colors {
     width: 100%;
     max-width: 1920px;
     padding: 0 50px;
-    margin: 0;
     @include tablet {
         padding: 0 20px;
     }
@@ -72,6 +81,10 @@ $val in $colors {
         margin-top: calc(#{$header-tablet-height}+20px);
     }
     @include mobile {
-        margin-top: calc(#{$header-tablet-height}+10px);
+        margin-top: calc(#{$header-mobile-height}+10px);
     }
+}
+
+.gird {
+    display: grid;
 }

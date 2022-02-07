@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-Product.propTypes = {};
+// Product.propTypes = {};
+import Helmet from "../Components/Helmet";
 
 function Product(props) {
-	return <div>Product</div>;
+	return <Helmet title="Sản phẩm">Product</Helmet>;
 }
 
 export default Product;
