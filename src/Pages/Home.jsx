@@ -10,6 +10,9 @@ import Section, { SectionTitle, SectionBody } from "../Components/Section";
 import policy from "../assets/fake-data/policy";
 import PolicyCard from "../Components/PolicyCard";
 import Gird from "./../Components/Gird";
+
+import productData from "../assets/fake-data/products.js";
+import ProductCard from "../Components/ProductCard";
 function Home() {
 	return (
 		<Helmet title="Trang chủ">
@@ -30,7 +33,6 @@ function Home() {
 									name={item.name}
 									description={item.description}
 									icon={item.icon}
-									s
 								/>
 							</Link>
 						))}
@@ -39,6 +41,46 @@ function Home() {
 			</Section>
 
 			{/* end policy */}
+			{/* selling top */}
+			<Section>
+				<SectionTitle>Top Những Sản Phẩm Bán Chạy Nhất</SectionTitle>
+				<SectionBody>
+					<Gird col={4} mdCol={2} smCol={1} gap={20}>
+						{productData.getProducts(4).map((item, index) => (
+							<ProductCard
+								key={index}
+								img1={item.image01}
+								img2={item.image02}
+								title={item.title}
+								slug={item.slug}
+								price={Number(item.price)}
+							/>
+						))}
+					</Gird>
+				</SectionBody>
+			</Section>
+
+			{/* end selling top */}
+
+			{/* best selling */}
+			<Section>
+				<SectionTitle>Phổ Biến</SectionTitle>
+				<SectionBody>
+					<Gird col={4} mdCol={2} smCol={1} gap={20}>
+						{productData.getProducts(12).map((item, index) => (
+							<ProductCard
+								key={index}
+								img1={item.image01}
+								img2={item.image02}
+								title={item.title}
+								slug={item.slug}
+								price={Number(item.price)}
+							/>
+						))}
+					</Gird>
+				</SectionBody>
+			</Section>
+			{/* end best selling */}
 		</Helmet>
 	);
 }
