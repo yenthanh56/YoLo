@@ -13,6 +13,7 @@ import Gird from "./../Components/Gird";
 
 import productData from "../assets/fake-data/products.js";
 import ProductCard from "../Components/ProductCard";
+import Banner from "../assets/images/banner.png";
 function Home() {
 	return (
 		<Helmet title="Trang chủ">
@@ -63,6 +64,7 @@ function Home() {
 			{/* end selling top */}
 
 			{/* best selling */}
+
 			<Section>
 				<SectionTitle>Phổ Biến</SectionTitle>
 				<SectionBody>
@@ -80,7 +82,18 @@ function Home() {
 					</Gird>
 				</SectionBody>
 			</Section>
+
 			{/* end best selling */}
+
+			{/* Banner */}
+			<Section>
+				<SectionBody>
+					<Link to="/catalog">
+						<img src={Banner} alt="Banner" />
+					</Link>
+				</SectionBody>
+			</Section>
+			{/*end Banner */}
 		</Helmet>
 	);
 }
