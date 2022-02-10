@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 // import PropTypes from "prop-types";
 // Catalog.propTypes = {};
 import Helmet from "../Components/Helmet";
-import ProductCard from "../Components/ProductCard";
-import Gird from "../Components/Gird";
+// import ProductCard from "../Components/ProductCard";
+// import Gird from "../Components/Gird";
 import CheckBox from "../Components/CheckBox";
 import Button from "../Components/Button";
 
 import ProductData from "../assets/fake-data/products";
-import Category from "../assets/fake-data/category";
+import category from "../assets/fake-data/category";
 import productColor from "../assets/fake-data/product-color";
 import productSize from "../assets/fake-data/product-size";
+import InfinityList from "../Components/InfinityList";
 function Catalog() {
 	const initFilter = {
 		category: [],
@@ -19,8 +20,32 @@ function Catalog() {
 	};
 	const productList = ProductData.getAllProducts();
 	const [products, setProducts] = useState(productList);
-
 	const [filter, setFilter] = useState(initFilter);
+
+	const updateProducts = useCallback(() => {
+		let temp = productList;
+		if (filter.category.length > 0) {
+			temp = temp.filter((e) => filter.category.includes(e.categorySlug));
+		}
+		if (filter.color.length > 0) {
+			temp = temp.filter((e) => {
+				const check = e.colors.find((color) =>
+					filter.color.includes(color)
+				);
+				return check !== undefined;
+			});
+		}
+		if (filter.size.length > 0) {
+			temp = temp.filter((e) => {
+				const check = e.size.find((size) => filter.size.includes(size));
+				return check !== undefined;
+			});
+		}
+		setProducts(temp);
+	}, [filter, productList]);
+	useEffect(() => {
+		updateProducts();
+	}, [updateProducts]);
 
 	const filterSelect = (type, checked, item) => {
 		if (checked) {
@@ -45,7 +70,6 @@ function Catalog() {
 					break;
 
 				default:
-					break;
 			}
 		} else {
 			switch (type) {
@@ -64,26 +88,26 @@ function Catalog() {
 					);
 					setFilter({
 						...filter,
-						category: newColor,
+						color: newColor,
 					});
 					break;
 				case "SIZE":
 					const newSize = filter.size.filter((e) => e !== item.size);
 					setFilter({
 						...filter,
-						category: newSize,
+						size: newSize,
 					});
 					break;
 
 				default:
-					break;
 			}
 		}
 	};
 
+	const clearFilter = () => setFilter(initFilter);
+
 	return (
 		<Helmet title="Catalog">
-			{console.log(filter)}
 			<div className="catalog">
 				<div className="catalog__filter">
 					<div className="catalog__filter__widget">
@@ -92,7 +116,7 @@ function Catalog() {
 							Danh Mục Sản Phẩm
 						</div>
 						<div className="catalog__filter__widget__content">
-							{Category.map((item, index) => (
+							{category.map((item, index) => (
 								<div
 									key={index}
 									className="catalog__filter__widget__content__item"
@@ -106,6 +130,9 @@ function Catalog() {
 												item
 											)
 										}
+										checked={filter.category.includes(
+											item.categorySlug
+										)}
 									/>
 								</div>
 							))}
@@ -131,6 +158,9 @@ function Catalog() {
 												item
 											)
 										}
+										checked={filter.color.includes(
+											item.color
+										)}
 									/>
 								</div>
 							))}
@@ -156,6 +186,9 @@ function Catalog() {
 												item
 											)
 										}
+										checked={filter.size.includes(
+											item.size
+										)}
 									/>
 								</div>
 							))}
@@ -163,24 +196,15 @@ function Catalog() {
 						{/* end type size */}
 
 						<div className="catalog__filter__widget__btn">
-							<Button size="sm">Xóa bộ lộc</Button>
+							<Button size="sm" onclick={clearFilter}>
+								Xóa bộ lộc
+							</Button>
 						</div>
 					</div>
 				</div>
 
 				<div className="catalog__content">
-					<Gird col={3} mdCol={2} smCol={1} gap={20}>
-						{products.map((item, index) => (
-							<ProductCard
-								key={index}
-								img1={item.image01}
-								img2={item.image02}
-								title={item.title}
-								price={Number(item.price)}
-								slug={item.slug}
-							/>
-						))}
-					</Gird>
+					<InfinityList data={products} />
 				</div>
 			</div>
 		</Helmet>
