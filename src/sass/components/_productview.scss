@@ -1,8 +1,14 @@
 .product {
     @include flex(flex-start, flex-start);
+    @include mobile {
+        flex-direction: column;
+    }
     &__images {
         @include flex(flex-start, flex-start);
         width: 60%;
+        @include mobile {
+            width: 100%;
+        }
         flex-wrap: wrap;
         &__list {
             width: 20%;
@@ -95,6 +101,9 @@
 .product-description {
     width: 100%;
     padding: 1rem 3rem 4rem;
+    @include mobile {
+        padding: 1rem 1rem 4rem;
+    }
     height: 400px;
     overflow: hidden;
     position: relative;

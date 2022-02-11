@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import Button from "./Button";
@@ -43,6 +44,18 @@ function ProductView(props) {
 			return;
 		}
 		toast.success("Bạn đã thêm vào giở hàng thành công");
+	};
+	const addTobuy = () => {
+		if (!color) {
+			toast.warning("Bạn hãy chọn màu sắc");
+			return;
+		}
+		if (!size) {
+			toast.warning("Bạn hãy chọn kích cỡ");
+			return;
+		}
+		props.history.push("/cart");
+		toast.success("thành công");
 	};
 
 	useEffect(() => {
@@ -167,11 +180,11 @@ function ProductView(props) {
 						</Button>
 					</div>
 					<Button onclick={() => addToCart()}>Thêm vào giỏ</Button>
-					<Button>Mua ngay</Button>
+					<Button onclick={() => addTobuy()}>Mua ngay</Button>
 				</div>
 			</div>
 		</div>
 	);
 }
 
-export default ProductView;
+export default withRouter(ProductView);
