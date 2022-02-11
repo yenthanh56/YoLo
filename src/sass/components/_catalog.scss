@@ -1,25 +1,69 @@
 .catalog {
     @include flex(flex-start, flex-start);
+    @include tablet {
+        flex-direction: column;
+    }
     &__filter {
         width: 20%;
         @include tablet {
-            width: unset;
+            width: max-content;
+            background-color: $main-bg;
+            height: 100vh;
+            position: fixed;
+            top: $header-tablet-height;
+            left: 0;
+            z-index: 100;
+            padding: 1.5rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        @include mobile {
+            top: $header-mobile-height;
+        }
+        &.active {
+            transform: translateX(0);
         }
         &__widget {
+            margin-bottom: 2rem;
             &__title {
                 font-weight: 600;
                 font-size: 1.5rem;
                 margin-bottom: 14px;
+                @include tablet {
+                    font-size: 2rem;
+                }
             }
             &__content {
                 margin-bottom: 14px;
                 &__item {
                     margin-bottom: 12px;
+                    @include tablet {
+                        font-size: 1.2rem;
+                    }
                 }
+            }
+        }
+        &__btnshowfilter {
+            display: none;
+            @include tablet {
+                display: block;
+                margin-bottom: 12px;
+            }
+        }
+        &__btnbackfilter {
+            display: none;
+            @include tablet {
+                display: block;
+                font-size: 2rem;
+                cursor: pointer;
+                margin-bottom: 8px;
             }
         }
     }
     &__content {
         flex-grow: 1;
+        @include tablet {
+            width: 100%;
+        }
     }
 }

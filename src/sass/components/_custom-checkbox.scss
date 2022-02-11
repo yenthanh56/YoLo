@@ -1,6 +1,9 @@
 .custom-checkbox {
     @include flex(center, flex-start);
     cursor: pointer;
+    @include tablet {
+        margin-bottom: 15px;
+    }
     &:hover {
         color: $main-color;
     }
@@ -19,6 +22,10 @@
         i {
             transform: scale(0);
             transition: transform 0.3s ease;
+        }
+        @include tablet {
+            width: 20px;
+            height: 20px;
         }
     }
     input:checked~&__checkmark {

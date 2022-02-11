@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 // import PropTypes from "prop-types";
 // Catalog.propTypes = {};
 import Helmet from "../Components/Helmet";
@@ -13,6 +13,7 @@ import productColor from "../assets/fake-data/product-color";
 import productSize from "../assets/fake-data/product-size";
 import InfinityList from "../Components/InfinityList";
 function Catalog() {
+	const filterRef = useRef(null);
 	const initFilter = {
 		category: [],
 		color: [],
@@ -104,12 +105,23 @@ function Catalog() {
 		}
 	};
 
-	const clearFilter = () => setFilter(initFilter);
+	const clearFilter = () => {
+		setFilter(initFilter);
+	};
+	const menuFilterToggle = () => {
+		filterRef.current.classList.toggle("active");
+	};
 
 	return (
 		<Helmet title="Catalog">
 			<div className="catalog">
-				<div className="catalog__filter">
+				<div className="catalog__filter" ref={filterRef}>
+					<div
+						className="catalog__filter__btnbackfilter"
+						onClick={() => menuFilterToggle()}
+					>
+						<i className="bx bx-arrow-back"></i>
+					</div>
 					<div className="catalog__filter__widget">
 						{/* type shirt */}
 						<div className="catalog__filter__widget__title">
@@ -201,6 +213,12 @@ function Catalog() {
 							</Button>
 						</div>
 					</div>
+				</div>
+
+				<div className="catalog__filter__btnshowfilter">
+					<Button size="sm" onclick={() => menuFilterToggle()}>
+						Bộ Lộc Nhanh
+					</Button>
 				</div>
 
 				<div className="catalog__content">
