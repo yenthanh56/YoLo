@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import PropTypes from "prop-types";
-// Header.propTypes = {};
 import logo from "../assets/images/Logo-2.png";
+import Notice from "./Notice";
+import { useSelector } from "react-redux";
+
+import productData from "../assets/fake-data/products";
 
 const mainNav = [
 	{
@@ -25,10 +27,8 @@ const mainNav = [
 
 function Header() {
 	const { pathname } = useLocation();
-
 	const activeNav = mainNav.findIndex((e) => e.path === pathname);
 	const headerRef = useRef(null);
-
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			if (
@@ -47,6 +47,8 @@ function Header() {
 
 	const menuLeft = useRef(null);
 	const menutoggleLeft = () => menuLeft.current.classList.toggle("active");
+
+	let [quantity, setQuantity] = useState(0);
 
 	return (
 		<div className="header" ref={headerRef}>
@@ -92,6 +94,7 @@ function Header() {
 							<Link to="/cart">
 								<i className="bx bx-shopping-bag"></i>
 							</Link>
+							<Notice notice={quantity} />
 						</div>
 						<div className="header__menu__item header__menu__right__item">
 							<i className="bx bx-user"></i>

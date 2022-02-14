@@ -67,6 +67,7 @@
             font-size: 2.25rem;
             &__item {
                 @include flex(center, center);
+                position: relative;
                 @include tablet {
                     margin-left: 10px;
                 }

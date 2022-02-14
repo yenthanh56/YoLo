@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Router from "../routes/index";
+import ProductViewModal from "./ProductViewModal";
 function Layout() {
 	return (
 		<BrowserRouter>
@@ -21,6 +22,7 @@ function Layout() {
 					</div>
 				)}
 			/>
+			<ProductViewModal />
 			<>
 				<ToastContainer
 					position="top-right"

@@ -1,0 +1,21 @@
+.notice {
+    background-color: #ff0000;
+    width: 30px;
+    height: 30px;
+    @include mobile {
+        width: 20px;
+        height: 20px;
+        top: -7px;
+        right: -10px;
+        line-height: 20px;
+    }
+    border: 1px solid #8d8d8d;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 30px;
+}

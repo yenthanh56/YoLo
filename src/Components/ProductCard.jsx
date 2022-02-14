@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 
 import numberWithCommas from "./../utils/numberWithCommas";
+import { useDispatch } from "react-redux";
+
+import { set } from "../redux/product-modal/productModalSlice";
 
 ProductCard.propTypes = {
 	img1: PropTypes.string.isRequired,
@@ -15,6 +18,7 @@ ProductCard.propTypes = {
 
 function ProductCard(props) {
 	const { img1, img2, title, slug, price } = props;
+	const disPatch = useDispatch();
 	return (
 		<div className="product-card">
 			<Link to={`/catalog/${slug}`}>
@@ -31,11 +35,14 @@ function ProductCard(props) {
 				</div>
 			</Link>
 			<div className="product-card__btn">
-				<Link to="/product-card">
-					<Button size="sm" icon="bx bx-cart" animation={true}>
-						Chọn mua
-					</Button>
-				</Link>
+				<Button
+					size="sm"
+					icon="bx bx-cart"
+					animation={true}
+					onclick={() => disPatch(set(props.slug))}
+				>
+					Chọn mua
+				</Button>
 			</div>
 		</div>
 	);

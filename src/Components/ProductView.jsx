@@ -7,11 +7,24 @@ import Button from "./Button";
 import numberWithCommas from "./../utils/numberWithCommas";
 
 ProductView.propTypes = {
-	product: PropTypes.object.isRequired,
+	product: PropTypes.object,
 };
 
 function ProductView(props) {
-	const { product } = props;
+	let { product } = props;
+
+	if (product === undefined) {
+		product = {
+			title: "",
+			image01: "",
+			image02: "",
+
+			price: 0,
+			colors: [],
+			size: [],
+		};
+	}
+
 	const [previewimg, setPreviewimg] = useState(product.image01);
 
 	const [descriptionExpand, setDescriptionExpand] = useState(false);
@@ -45,6 +58,7 @@ function ProductView(props) {
 		}
 		toast.success("Bạn đã thêm vào giở hàng thành công");
 	};
+
 	const addTobuy = () => {
 		if (!color) {
 			toast.warning("Bạn hãy chọn màu sắc");
