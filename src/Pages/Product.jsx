@@ -9,8 +9,11 @@ import ProductCard from "./../Components/ProductCard";
 import productData from "./../assets/fake-data/products";
 import ProductView from "../Components/ProductView";
 
+import { useParams } from "react-router-dom";
+
 function Product(props) {
-	const product = productData.getProductBySlug(props.match.params.slug);
+	const params = useParams();
+	const product = productData.getProductBySlug(params.slug);
 
 	const relatedProducts = productData.getProducts(8);
 

@@ -20,6 +20,7 @@ function InfinityList(props) {
 
 	useEffect(() => {
 		setData(props.data.slice(0, perLoad));
+		setIndex(1);
 	}, [props.data]);
 
 	useEffect(() => {

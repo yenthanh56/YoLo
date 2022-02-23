@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { withRouter } from "react-router-dom";
-
+import { withRouter, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Button from "./Button";
 import numberWithCommas from "./../utils/numberWithCommas";
-
+import { addCart } from "../redux/ShoppingCart/cartItem";
 ProductView.propTypes = {
 	product: PropTypes.object,
 };
-
 function ProductView(props) {
+	const history = useHistory();
+	const disPatch = useDispatch();
 	let { product } = props;
-
 	if (product === undefined) {
 		product = {
 			title: "",
@@ -56,7 +56,17 @@ function ProductView(props) {
 			toast.warning("Bạn hãy chọn kích cỡ");
 			return;
 		}
-		toast.success("Bạn đã thêm vào giở hàng thành công");
+		disPatch(
+			addCart({
+				slug: product.slug,
+				color: color,
+				size: size,
+				quantity: quantity,
+				price: product.price,
+			})
+		);
+
+		toast.success("Bạn đã thêm vào giỏ hàng thành công");
 	};
 
 	const addTobuy = () => {
@@ -68,7 +78,17 @@ function ProductView(props) {
 			toast.warning("Bạn hãy chọn kích cỡ");
 			return;
 		}
-		props.history.push("/cart");
+		//props.history.push("/cart");
+		history.push("/cart");
+		disPatch(
+			addCart({
+				slug: product.slug,
+				color: color,
+				size: size,
+				quantity: quantity,
+				price: product.price,
+			})
+		);
 		toast.success("thành công");
 	};
 
