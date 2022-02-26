@@ -47,8 +47,9 @@
             padding-top: $header-tablet-height;
         }
         @include mobile {
-            padding-top: unset;
-            padding-bottom: 40px;
+            // padding-top: unset;
+            // padding-bottom: 40px;
+            padding: 0;
         }
         &__info {
             width: 58.33%;
@@ -84,8 +85,8 @@
                 font-size: 1.5rem;
                 overflow: hidden;
                 @include mobile {
-                    font-size: 1.2rem;
-                    line-height: 2rem;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
                 }
             }
             &__btn {
@@ -156,12 +157,12 @@
                     transform: translate(50%, -50%);
                 }
                 @include mobile {
-                    $size: 220px;
+                    $size: 200px;
                     height: $size;
                     width: $size;
                     position: absolute;
                     right: 50%;
-                    transform: translate(50%, -50%);
+                    transform: translate(50%, -30%);
                 }
             }
         }

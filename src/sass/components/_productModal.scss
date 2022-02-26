@@ -23,6 +23,12 @@
         opacity: 0;
         transform: translateY(-250px);
         transition: transform 0.3s ease;
+        @include tablet {
+            width: 80%;
+        }
+        @include mobile {
+            width: 80%;
+        }
     }
     &__btn {
         position: absolute;

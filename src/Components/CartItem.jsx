@@ -12,17 +12,16 @@ CartItem.propTypes = {
 
 function CartItem(props) {
 	const disPatch = useDispatch();
-	const { item } = props;
 
 	// newitem contain all properties : quantity , size , color
 
-	const [newitem, setNewitem] = useState(item);
-	const [quantity, setQuantity] = useState(item.quantity);
+	const [newitem, setNewitem] = useState(props.item);
+	const [quantity, setQuantity] = useState(props.item.quantity);
 
 	useEffect(() => {
-		setNewitem(newitem);
-		setQuantity(item.quantity);
-	}, [newitem, item.quantity]);
+		setNewitem(props.item);
+		setQuantity(props.item.quantity);
+	}, [props.item, props.item.quantity]);
 
 	const updateQuantity = (opt) => {
 		if (opt === "+") {

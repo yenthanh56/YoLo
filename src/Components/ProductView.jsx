@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import Button from "./Button";
 import numberWithCommas from "./../utils/numberWithCommas";
 import { addCart } from "../redux/ShoppingCart/cartItem";
+import { remove } from "../redux/product-modal/productModalSlice";
+
 ProductView.propTypes = {
 	product: PropTypes.object,
 };
@@ -65,6 +67,7 @@ function ProductView(props) {
 				price: product.price,
 			})
 		);
+		disPatch(remove());
 
 		toast.success("Bạn đã thêm vào giỏ hàng thành công");
 	};
@@ -89,6 +92,8 @@ function ProductView(props) {
 				price: product.price,
 			})
 		);
+		disPatch(remove());
+
 		toast.success("thành công");
 	};
 
